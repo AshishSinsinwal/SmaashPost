@@ -68,7 +68,7 @@ let posts = [
  * GET / - Health check endpoint
  */
 app.get("/", (req, res) => {
-    res.send("Server is running");
+    res.redirect("/posts");
 });
 
 /**
