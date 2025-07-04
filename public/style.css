@@ -1,14 +1,6 @@
-/* style.css */
-:root {
-    --primary-color: #b92b27;
-    --secondary-color: #f8f9fa;
-    --text-color: #333;
-    --light-gray: #e6e6e6;
-    --dark-gray: #636466;
-    --white: #ffffff;
-    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
+/* ===========================================
+   GLOBAL STYLES & RESET
+   =========================================== */
 * {
     margin: 0;
     padding: 0;
@@ -17,97 +9,138 @@
 }
 
 body {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
+    background-color: #f8f9fa;
+    color: #333;
     line-height: 1.6;
+    animation: fadeUp 0.7s ease-out;
 }
 
-header {
-    background-color: var(--white);
-    padding: 1rem 2rem;
+/* ===========================================
+   ANIMATIONS
+   =========================================== */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px); 
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* ===========================================
+   NAVIGATION
+   =========================================== */
+.navbar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    box-shadow: var(--shadow);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    position: relative;
+    min-height: 90px;
+    background: linear-gradient(90deg, #b92b27, #f8cdda);
+    transform: translateY(-100%);
+    animation: slideDown 0.5s ease-in-out forwards;
 }
 
-header h1 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.new-post-btn {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 0.6rem 1.2rem;
-    border-radius: 4px;
+.logo i {
+    font-size: 2rem;
+    color: white;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-links a {
     text-decoration: none;
+    color: white;
+    background: linear-gradient(90deg, #a82424, #e84c3d);
+    padding: 5px 10px;
+    border-radius: 0.2rem;
+    transition: 0.2s ease-in;
     font-weight: 500;
-    transition: all 0.3s ease;
 }
 
-.new-post-btn:hover {
-    background-color: #9c2522;
-    transform: translateY(-2px);
+.nav-links a:hover {
+    transform: translateY(-1px);
 }
 
+/* ===========================================
+   LAYOUT
+   =========================================== */
 .container {
     display: flex;
-    min-height: calc(100vh - 68px);
-}
-
-.sidebar {
-    width: 250px;
-    background-color: var(--white);
-    padding: 1.5rem;
-    box-shadow: var(--shadow);
-}
-
-.sidebar nav ul {
-    list-style: none;
-}
-
-.sidebar nav li {
-    margin-bottom: 1rem;
-}
-
-.sidebar nav a {
-    color: var(--text-color);
-    text-decoration: none;
-    display: block;
-    padding: 0.5rem;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-}
-
-.sidebar nav a:hover {
-    background-color: var(--light-gray);
-    color: var(--primary-color);
+    min-height: calc(100vh - 90px);
+    background-color: rgba(128, 128, 128, 0.07);
 }
 
 .content {
     flex: 1;
     padding: 2rem;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 1.5rem;
 }
 
+/* ===========================================
+   POST CARDS
+   =========================================== */
 .post-card {
-    background-color: var(--white);
-    border-radius: 8px;
+    border-radius: 0.5rem;
     padding: 1.5rem;
-    box-shadow: var(--shadow);
     transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
+    height: 430px;
+    background: #f8f8f8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .post-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0.5rem 0 0;
+    text-transform: capitalize;
+    line-height: 1.3;
+    word-break: break-word;
+    background-color: #343a40;
+    padding: 1rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    height: 5rem;
 }
 
 .post-header {
@@ -118,8 +151,8 @@ header h1 {
 }
 
 .user-badge {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: #b92b27;
+    color: #ffffff;
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -142,17 +175,18 @@ header h1 {
 }
 
 .edit-btn {
-    background-color: #4a89dc;
+    background-color: #ffc107;
     color: white;
     text-decoration: none;
 }
 
 .edit-btn:hover {
     background-color: #3a70c2;
+    transform: translateY(-2px);
 }
 
 .delete-btn {
-    background-color: #e74c3c;
+    background-color: #dc3545;
     color: white;
 }
 
@@ -161,17 +195,24 @@ header h1 {
 }
 
 .post-content {
+    height: 150px;
+    background-color: #495057;
+    padding: 1.5rem;
+    border-radius: 0rem 0rem 0.5rem 0.5rem;
     margin-bottom: 1rem;
-    flex-grow: 1;
 }
 
-.post-content p {
-    color: var(--dark-gray);
-    line-height: 1.6;
+.post-snippet {
+    height: 100px;
+    overflow: hidden;
+    line-height: 1.4em;
+    margin-bottom: 0.5rem;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .read-more {
-    color: var(--primary-color);
+    color: #0d6efd;
     text-decoration: none;
     font-weight: 500;
     align-self: flex-end;
@@ -182,91 +223,320 @@ header h1 {
     text-decoration: underline;
 }
 
-    .site-footer {
-        background-color: #f8f9fa;
-        padding: 2rem 0;
-        margin-top: 3rem;
-        border-top: 1px solid #e6e6e6;
-        font-family: 'Roboto', sans-serif;
-        
-    }
-    
-    .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    
-    .footer-section {
-        flex: 1;
-        min-width: 200px;
-        margin-bottom: 1.5rem;
-    }
-    
-    .footer-section h4 {
-        color: #b92b27; /* Quora red */
-        margin-bottom: 1rem;
-        font-size: 1.1rem;
-    }
-    
-    .footer-section ul {
-        list-style: none;
-        padding: 0;
-    }
-    
-    .footer-section li {
-        margin-bottom: 0.5rem;
-    }
-    
-    .footer-section a {
-        color: #636466;
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-    
-    .footer-section a:hover {
-        color: #b92b27;
-    }
-    
-    .social-links a {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    
-    .copyright {
-        text-align: center;
-        padding-top: 1.5rem;
-        margin-top: 1.5rem;
-        border-top: 1px solid #e6e6e6;
-        color: #636466;
-        font-size: 0.9rem;
-    }
-    
-    @media (max-width: 768px) {
-        .footer-section {
-            flex: 100%;
-        }
-    }
+/* ===========================================
+   INDIVIDUAL POST DISPLAY
+   =========================================== */
+.post-container {
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+    padding: 2rem;
+    margin-top: 1rem;
+}
 
+h1 {
+    color: #b92b27;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
 
+.post-id {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
 
-/* Responsive Design */
+.post-show {
+    background-color: #e6e6e6;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    height: fit-content;
+}
+
+.user {
+    color: #b92b27;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.user:before {
+    content: "@";
+    margin-right: 4px;
+}
+
+.content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: #b92b27;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+    transform: translateX(-3px);
+}
+
+/* ===========================================
+   FORMS
+   =========================================== */
+.form-container {
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 2.5rem;
+    margin-top: 1rem;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-header h1 {
+    color: #b92b27;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-header p {
+    color: #333;
+    opacity: 0.7;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #b92b27;
+    box-shadow: 0 0 0 2px rgba(185, 43, 39, 0.2);
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background: linear-gradient(90deg, #a82424, #e84c3d);
+    color: #ffffff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #9c2522;
+    transform: translateY(-2px);
+}
+
+.character-count {
+    text-align: right;
+    font-size: 0.8rem;
+    color: #333;
+    opacity: 0.7;
+    margin-top: 0.3rem;
+}
+
+/* ===========================================
+   ALERTS
+   =========================================== */
+.alert {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    margin: 1rem auto;
+    border-radius: 6px;
+    font-size: 1rem;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.success-alert {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 6px solid #28a745;
+}
+
+.error-alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 6px solid #dc3545;
+}
+
+.alert-icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.close-alert {
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 0.5rem;
+}
+
+.close-alert:hover {
+    background-color: #dc3545;
+}
+
+/* ===========================================
+   FOOTER
+   =========================================== */
+.site-footer {
+    background: linear-gradient(to right, #f8f9fa, #fbe6e5);
+    padding: 2rem 0;
+    border-top: 1px solid #e6e6e6;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 1.5rem;
+}
+
+.footer-section h4 {
+    color: #b92b27;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: #636466;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: #b92b27;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid #e6e6e6;
+    color: #636466;
+    font-size: 0.9rem;
+}
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
     }
-    
-    .sidebar {
-        width: 100%;
-        padding: 1rem;
-    }
-    
+
     .content {
         grid-template-columns: 1fr;
         padding: 1rem;
+    }
+
+    .footer-section {
+        flex: 100%;
+    }
+}
+
+@media (max-width: 570px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #f8f8f8;
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    #menu-toggle:checked + .menu-icon + .nav-links {
+        display: flex;
     }
 }

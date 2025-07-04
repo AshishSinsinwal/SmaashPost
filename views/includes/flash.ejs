@@ -1,0 +1,15 @@
+<% if (success && success.length) { %>
+  <div class="alert success-alert">
+    <span class="alert-icon">✔️</span>
+    <span><%= success %></span>
+    <button class="close-alert" onclick="this.parentElement.style.display='none';">✖</button>
+  </div>
+<% } %>
+
+<% if (error && error.length) { %>
+  <div class="alert error-alert">
+    <span class="alert-icon">⚠️</span>
+    <span><%= error %></span>
+    <button class="close-alert" onclick="this.parentElement.style.display='none';">✖</button>
+  </div>
+<% } %>

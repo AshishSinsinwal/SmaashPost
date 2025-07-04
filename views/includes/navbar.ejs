@@ -1,0 +1,22 @@
+
+
+<header class="navbar">
+  <div class="logo">
+    <i class="fa-solid fa-blog"></i>
+  </div>
+
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="menu-icon">&#9776;</label>
+
+  <nav class="nav-links">
+    <a href="/posts">Home</a>
+    <a href="/posts/new">+ New Post</a>
+    <% if (currUser) { %>
+      <a href="/posts/user">My Posts</a>
+      <a href="/logout">Logout</a>
+    <% } else { %>
+      <a href="/signup">Sign Up</a>
+      <a href="/login">Login</a>
+    <% } %>
+  </nav>
+</header>

@@ -3,7 +3,7 @@
         const usernameCount = document.getElementById('username-count');
         
         usernameInput.addEventListener('input', function() {
-            const remaining = 10 - this.value.length;
+            const remaining = 15 - this.value.length;
             usernameCount.textContent = remaining;
             
             if (remaining < 3) {
