@@ -44,11 +44,13 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 10px 20px;
-    position: relative;
+    position: sticky;
+    top:0px;
     min-height: 90px;
     background: linear-gradient(90deg, #b92b27, #f8cdda);
     transform: translateY(-100%);
     animation: slideDown 0.5s ease-in-out forwards;
+    z-index: 100;
 }
 
 .logo {
@@ -89,6 +91,7 @@ body {
 
 .nav-links a:hover {
     transform: translateY(-1px);
+     background: linear-gradient(90deg, #e84c3d, #a82424);
 }
 
 /* ===========================================
@@ -104,7 +107,7 @@ body {
     flex: 1;
     padding: 2rem;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
     gap: 1.5rem;
 }
 
@@ -180,18 +183,14 @@ body {
     text-decoration: none;
 }
 
-.edit-btn:hover {
-    background-color: #3a70c2;
+.edit-btn:hover , .delete-btn:hover {
+    background-color: #c0392b;
     transform: translateY(-2px);
 }
 
 .delete-btn {
     background-color: #dc3545;
     color: white;
-}
-
-.delete-btn:hover {
-    background-color: #c0392b;
 }
 
 .post-content {
@@ -305,6 +304,7 @@ h1 {
     max-width: 600px;
     padding: 2.5rem;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .form-header {
@@ -324,6 +324,7 @@ h1 {
 }
 
 .form-group {
+    margin-top: 1rem;
     margin-bottom: 1.5rem;
 }
 
@@ -351,13 +352,12 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 textarea:focus {
     outline: none;
-    border-color: #b92b27;
-    box-shadow: 0 0 0 2px rgba(185, 43, 39, 0.2);
 }
 
 textarea {
-    min-height: 150px;
+    height: 180px;
     resize: vertical;
+  
 }
 
 .submit-btn {
@@ -371,10 +371,11 @@ textarea {
     width: 100%;
     font-weight: 500;
     transition: all 0.3s ease;
+    margin-top: 1rem;
 }
 
 .submit-btn:hover {
-    background-color: #9c2522;
+     background: linear-gradient(90deg, #e84c3d, #a82424);
     transform: translateY(-2px);
 }
 
@@ -385,6 +386,48 @@ textarea {
     opacity: 0.7;
     margin-top: 0.3rem;
 }
+
+
+.submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+        
+/* Validation styles */
+.input-valid {
+    border-color: #28a745 !important;
+}
+        
+.input-invalid {
+    border-color: #dc3545 !important;
+}
+        
+.error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+        
+.error-message.show {
+    display: block;
+}
+        
+ .char-counter {
+    font-size: 0.875rem;
+    color: #666;
+    text-align: right;
+    margin-top: 0.25rem;
+}
+        
+.char-counter.warning {
+    color: #ffc107;
+}
+        
+.char-counter.danger {
+    color: #dc3545;
+}
+
 
 /* ===========================================
    ALERTS
@@ -528,7 +571,7 @@ textarea {
         flex-direction: column;
         display: none;
         position: absolute;
-        top: 60px;
+        top: 80px;
         left: 0;
         right: 0;
         background: #f8f8f8;

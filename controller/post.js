@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Post = require("../Schema/post");
 const User = require("../Schema/user");
-const postJoiSchema = require("../utils/joi");
+const { postJoiSchema } = require("../utils/joi");
 const ExpressError = require("../utils/expressErr");
 const wrapAsync = require("../utils/wrapAsync");
 const { all } = require("../routers/post");
@@ -73,13 +73,14 @@ module.exports.renderEditForm = [
 module.exports.editPost = [
     validateObjId,
     wrapAsync(async (req, res) => {
+            console.log(req.body); // 👈 Check what's being sent
         const { error } = postJoiSchema.validate(req.body);
         if (error) throw new ExpressError(error.details[0].message, 400);
 
         const { id } = req.params;
-        const { content } = req.body;
+        const { content , title } = req.body;
 
-        const post = await Post.findByIdAndUpdate(id, { content }, { new: true });
+        const post = await Post.findByIdAndUpdate(id, { content , title }, { new: true });
         if (!post) {
             return res.status(404).render("error.ejs", { message: "Post not found" });
         }

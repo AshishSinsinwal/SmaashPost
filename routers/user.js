@@ -1,6 +1,7 @@
 const express = require('express');
 const userController = require("../controller/user");
 const router = express.Router({ mergeParams: true });
+const {saveRedirectUrl} = require("../middlewares");
 router 
     .route("/signup")
     .get(userController.renderSignupForm)
@@ -9,7 +10,7 @@ router
 router
     .route("/login")
     .get(userController.renderLoginForm)
-    .post(userController.login);
+    .post(saveRedirectUrl , userController.login);
 
 router
     .route("/logout")

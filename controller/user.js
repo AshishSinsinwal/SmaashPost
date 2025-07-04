@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Post = require("../Schema/post");
 const User = require("../Schema/user");
 const passport = require("passport");
-const userJoiSchema = require("../utils/joi");
+const {userJoiSchema} = require("../utils/joi");
 const ExpressError = require("../utils/expressErr");
 const wrapAsync = require("../utils/wrapAsync");
 
@@ -47,8 +47,10 @@ module.exports.login = (req, res, next) => {
 
       req.logIn(user, (err) => {
         if (err) return next(err);
+
+        const redirectUrl = res.locals.returnTo || "/posts";
         req.flash("success", `Welcome back, ${user.username}!`);
-        return res.redirect("/posts");
+        return res.redirect(redirectUrl);
       });
     })(req, res, next);
   }

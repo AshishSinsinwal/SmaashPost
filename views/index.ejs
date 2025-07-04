@@ -3,7 +3,7 @@
 <div class="container">
     <main class="content">
         <% if(allPosts.length === 0) { %>
-            <article class="post-card" data-aos="fadeup">
+            <article class="post-card" data-aos="fadeup" >
                 <span class="user-badge">@<%= currUser.username %></span>
                 <span class="title">No posts Yet!</span>
                 <div class="post-content">
@@ -12,7 +12,7 @@
             </article>
         <% } else { 
             for (post of allPosts) { %>
-                <article class="post-card" data-aos="fadeup">
+                <article class="post-card" data-aos="fadeup" >
                     <div class="post-header">
                         <span class="user-badge">@<%= post.username %></span>
                         <div class="post-actions">
@@ -24,15 +24,17 @@
                             <% } %>
                         </div>
                     </div>
-                    <span class="title">title : <%= post.title %></span>
-                    <div class="post-content">
-                        <p class="post-snippet"><%= post.content %></p>
-                    </div>
+
+                        <span class="title">title : <%= post.title %></span>
+                        <div class="post-content">
+                            <p class="post-snippet"><%= post.content %></p>
+                        </div>
+                  
                     <% if (post.createdAt && post.updatedAt) { %>
                         <% if (post.createdAt.getTime() === post.updatedAt.getTime()) { %>
-                            <small class="text-muted">Posted at: <%= post.createdAt.toLocaleString("en-IN", {year:'numeric', month:'short', day:'numeric'}) %></small>
+                            <small class="text-muted">Posted on: <%= post.createdAt.toLocaleString("en-IN", {year:'numeric', month:'short', day:'numeric'}) %></small>
                         <% } else { %>
-                            <small class="text-muted">Posted at (Updated): <%= post.updatedAt.toLocaleString("en-IN", {year:'numeric', month:'short', day:'numeric'}) %></small>
+                            <small class="text-muted">Posted on (Updated): <%= post.updatedAt.toLocaleString("en-IN", {year:'numeric', month:'short', day:'numeric'}) %></small>
                         <% } %>
                     <% } %>
 
